@@ -63,7 +63,7 @@ sim_t::sim_t(const char* isa, size_t nprocs, bool halted, reg_t start_pc,
 
   // added my device
   mydevice.reset(new mydevice_t(procs));
-  bus.add_device(0, mydevice.get());
+  bus.add_device(0x03000000, mydevice.get());
 }
 
 sim_t::~sim_t()
