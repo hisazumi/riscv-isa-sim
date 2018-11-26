@@ -60,6 +60,10 @@ sim_t::sim_t(const char* isa, size_t nprocs, bool halted, reg_t start_pc,
 
   clint.reset(new clint_t(procs));
   bus.add_device(CLINT_BASE, clint.get());
+
+  // added my device
+  mydevice.reset(new mydevice_t(procs));
+  bus.add_device(0, mydevice.get());
 }
 
 sim_t::~sim_t()
@@ -114,6 +118,7 @@ void sim_t::step(size_t n)
         current_proc = 0;
         clint->increment(INTERLEAVE / INSNS_PER_RTC_TICK);
       }
+      mydevice->tick();
 
       host->switch_to();
     }

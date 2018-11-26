@@ -324,6 +324,7 @@ private:
 
   friend class mmu_t;
   friend class clint_t;
+  friend class mydevice_t;
   friend class extension_t;
 
   void parse_isa_string(const char* isa);

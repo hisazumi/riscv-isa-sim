@@ -70,3 +70,23 @@ void clint_t::increment(reg_t inc)
       procs[i]->state.mip |= MIP_MTIP;
   }
 }
+
+mydevice_t::mydevice_t(std::vector<processor_t*>& procs) : 
+ procs(procs), count(0)
+{
+}
+
+bool mydevice_t::load(reg_t addr, size_t len, uint8_t* bytes) {
+  return true;
+}
+
+bool mydevice_t::store(reg_t addr, size_t len, const uint8_t* bytes) {
+  return true;
+}
+
+void mydevice_t::tick() {
+  fprintf (stderr, "tick!\n");
+  for (size_t i = 0 ; i<procs.size() ; i++) {
+    procs[i]->state.mip |= MIP_MTIP;
+  }
+}

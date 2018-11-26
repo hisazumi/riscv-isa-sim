@@ -113,6 +113,9 @@ private:
   size_t chunk_align() { return 8; }
   size_t chunk_max_size() { return 8; }
 
+  //XXX it will be segv if you changed memory layout of this class...
+  std::unique_ptr<mydevice_t> mydevice;
+
 public:
   // Initialize this after procs, because in debug_module_t::reset() we
   // enumerate processors, which segfaults if procs hasn't been initialized
